@@ -17,6 +17,41 @@ main {
 	flex-direction: column;
 	gap: 40px;
 }
+.alert {
+	font-size: 50px;
+	font-weight: bold;
+	text-transform: uppercase;
+	background-color: #fdfbf6;
+	padding: 5px 20px;
+	border-radius: 20px;
+}
+.correct {
+	color: #25d366;
+}
+.incorrect {
+	color: red;
+}
+.timer-container {
+	display: grid;
+	place-items: center;
+	gap: 10px;
+}
+.btn-game {
+	flex-direction: row;
+}
+.timer-container button {
+	background-color: #263f73;
+	color: #fdfbf6;
+	border: none;
+	border-radius: 5px;
+	padding: 10px 20px;
+	cursor: pointer;
+	width: auto;
+}
+.timer-container .timer {
+	font-size: 50px;
+	color: #fdfbf6;
+}
 .question-container {
 	display: grid;
 	place-items: center;
@@ -87,6 +122,13 @@ button.operator {
 
 button#equal {
 	background-color: #89bad9;
+}
+.check {
+	background-color: #89d99450;
+}
+.check:hover {
+	color: #fdfbf6;
+	background-color: #89d994;
 }
 button:hover {
 	background-color: #f2c4eb;

@@ -4,6 +4,10 @@ const result = document.querySelector('.result');
 const operator = document.querySelectorAll('.operator');
 const solve = document.querySelector('.operation');
 const problem = document.querySelector('.problem');
+const timer = document.querySelector('.timer');
+const stopTimer = document.querySelector('.stop-timer');
+const startTimer = document.querySelector('.start-timer');
+const alertResult = document.querySelector('.alert');
 
 let currentNumber = '';
 let previusNumber = '';
@@ -36,7 +40,7 @@ function operations(value) {
 		previusNumber = '';
 	} else if (value === 'equal') {
 		operation();
-		checkAnswer();
+
 		calculateResult();
 	} else if (value === 'backspace') {
 		currentNumber = currentNumber.slice(0, -1);
@@ -46,8 +50,8 @@ function operations(value) {
 		if (!currentNumber.includes('.')) {
 			currentNumber += value;
 		}
-	} else if (value === 'sqrt') {
-		currentNumber = Math.sqrt(currentNumber);
+	} else if (value === 'check') {
+		checkAnswer();
 	} else {
 		currentNumber += value;
 	}
@@ -73,20 +77,43 @@ function updateresult() {
 	}
 }
 
-let num1,num2
+let num1, num2;
 
 num1 = Math.floor(Math.random() * 100);
 num2 = Math.floor(Math.random() * 100);
 problem.textContent = `${num1} + ${num2}`;
 
-function checkAnswer(){ 
+function checkAnswer() {
 	let answer = document.querySelector('.result').textContent;
-	if(answer == num1 + num2){
-		alert('Correct');
+	if (answer == num1 + num2) {
+		alertResult.innerHTML = 'Correct';
+		alertResult.classList.add('correct');
+		alertResult.classList.remove('incorrect');
 		num1 = Math.floor(Math.random() * 100);
 		num2 = Math.floor(Math.random() * 100);
 		problem.textContent = `${num1} + ${num2}`;
 	} else {
-		alert('Incorrect');
+		alertResult.innerHTML = 'Incorrect';
+		alertResult.classList.add('incorrect');
+		alertResult.classList.remove('correct');
 	}
+}
+
+// timer
+timer.innerHTML = '00:30';
+function countdown() {
+	let time = 30;
+	let interval = setInterval(function () {
+		timer.innerHTML = '00:' + time;
+		time--;
+
+		if (time < 0) {
+			clearInterval(interval);
+			alert('Time is up');
+		}
+	}, 1000);
+	stopTimer.addEventListener('click', () => {
+		clearInterval(interval);
+		timer.innerHTML = '00:30';
+	});
 }
